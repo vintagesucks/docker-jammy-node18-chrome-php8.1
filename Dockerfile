@@ -59,6 +59,12 @@ RUN corepack enable
 RUN curl -sS https://getcomposer.org/installer | php -- \
   --install-dir=/usr/local/bin --filename=composer
 
+# install local-php-security-checker
+RUN curl -s https://api.github.com/repos/fabpot/local-php-security-checker/releases/latest | grep \
+  -E "browser_download_url(.+)linux_amd64" | cut -d : -f 2,3 | tr -d \" | wget -qi - && \
+  mv local-php-security-checker_* /usr/local/bin/local-php-security-checker && \
+  chmod +x /usr/local/bin/local-php-security-checker
+
 # install Google Chrome
 RUN wget \
   https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \

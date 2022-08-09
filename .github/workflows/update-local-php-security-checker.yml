@@ -1,0 +1,31 @@
+name: Update local-php-security-checker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: wget -O version.json "https://api.github.com/repos/fabpot/local-php-security-checker/releases/latest"
+      - name: Get latest version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'version.json'
+            prop_path: 'tag_name'
+      - run: sed -i 's/local-php-security-checker v.*$/local-php-security-checker ${{steps.version.outputs.prop}}/g' README.md
+      - run: rm version.json
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4.0.4
+        with:
+            token: ${{ secrets.PAT }}
+            commit-message: 'local-php-security-checker ${{steps.version.outputs.prop}}'
+            committer: 'Nikolas Evers <vintagesucks@users.noreply.github.com>'
+            branch: 'local-php-security-checker-${{steps.version.outputs.prop}}'
+            delete-branch: true
+            title: 'PHP ${{steps.version.outputs.prop}}'
+            body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update.yml).'
