@@ -66,7 +66,7 @@ RUN curl -L $(curl -s https://api.github.com/repos/fabpot/local-php-security-che
   chmod +x /usr/local/bin/local-php-security-checker
 
 # test 
-local-php-security-checker
+RUN local-php-security-checker
 
 # install Google Chrome
 RUN wget \
