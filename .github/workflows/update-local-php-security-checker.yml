@@ -27,5 +27,5 @@ jobs:
             committer: 'Nikolas Evers <vintagesucks@users.noreply.github.com>'
             branch: 'local-php-security-checker-${{steps.version.outputs.prop}}'
             delete-branch: true
-            title: 'PHP ${{steps.version.outputs.prop}}'
+            title: 'local-php-security-checker ${{steps.version.outputs.prop}}'
             body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update.yml).'
