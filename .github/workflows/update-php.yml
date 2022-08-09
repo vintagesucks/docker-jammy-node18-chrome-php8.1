@@ -28,4 +28,4 @@ jobs:
             branch: 'php-${{steps.version.outputs.prop}}'
             delete-branch: true
             title: 'PHP ${{steps.version.outputs.prop}}'
-            body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update.yml). Please check if ${{steps.version.outputs.prop}} is [available at the PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php/+packages?field.name_filter=php8.1&field.status_filter=published&field.series_filter=jammy) before merging.'
+            body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update-php.yml). Please check if ${{steps.version.outputs.prop}} is [available at the PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php/+packages?field.name_filter=php8.1&field.status_filter=published&field.series_filter=jammy) before merging.'
