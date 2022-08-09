@@ -5,6 +5,6 @@
 Docker image
 * Ubuntu 22.04
 * Node.js v18 + NPM + Yarn
-* PHP 8.1.8 + Composer
+* PHP 8.1.9 + Composer
 * local-php-security-checker v2.0.4
 * Google Chrome
