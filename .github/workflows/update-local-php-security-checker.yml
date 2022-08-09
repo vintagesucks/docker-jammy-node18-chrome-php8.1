@@ -17,7 +17,7 @@ jobs:
         with: 
             path: 'version.json'
             prop_path: 'tag_name'
-      - run: sed -i 's/local-php-security-checker v.*$/local-php-security-checker ${{steps.version.outputs.prop}} + Composer/g' README.md
+      - run: sed -i 's/local-php-security-checker v.*$/local-php-security-checker ${{steps.version.outputs.prop}}/g' README.md
       - run: rm version.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.0.4
