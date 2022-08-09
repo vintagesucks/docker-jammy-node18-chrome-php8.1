@@ -65,9 +65,6 @@ RUN curl -s https://api.github.com/repos/fabpot/local-php-security-checker/relea
   mv local-php-security-checker_* /usr/local/bin/local-php-security-checker && \
   chmod +x /usr/local/bin/local-php-security-checker
 
-# test 
-RUN local-php-security-checker
-
 # install Google Chrome
 RUN wget \
   https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
