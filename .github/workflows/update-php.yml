@@ -1,4 +1,4 @@
-name: Update
+name: Update PHP
 
 on:
   workflow_dispatch:

@@ -8,6 +8,7 @@ RUN apt-get update && \
 # install essential packages
 RUN apt-get -y install \
   curl \
+  jq \
   build-essential \
   software-properties-common \
   language-pack-en-base \
@@ -58,6 +59,14 @@ RUN corepack enable
 # install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- \
   --install-dir=/usr/local/bin --filename=composer
+
+# install local-php-security-checker
+RUN curl -L $(curl -s https://api.github.com/repos/fabpot/local-php-security-checker/releases/latest | \ 
+  jq -r '.assets[].browser_download_url | select(.|test("_linux_amd64$"))') \ -o /usr/local/bin/local-php-security-checker && \ 
+  chmod +x /usr/local/bin/local-php-security-checker
+
+# test 
+local-php-security-checker
 
 # install Google Chrome
 RUN wget \
