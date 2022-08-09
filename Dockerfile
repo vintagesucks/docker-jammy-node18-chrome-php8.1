@@ -61,7 +61,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 # install local-php-security-checker
 RUN curl -s https://api.github.com/repos/fabpot/local-php-security-checker/releases/latest | grep \
-  -E "browser_download_url(.+)darwin_amd64" | cut -d : -f 2,3 | tr -d \" | wget -qi - && \
+  -E "browser_download_url(.+)linux_amd64" | cut -d : -f 2,3 | tr -d \" | wget -qi - && \
   mv local-php-security-checker_* /usr/local/bin/local-php-security-checker && \
   chmod +x /usr/local/bin/local-php-security-checker
 
