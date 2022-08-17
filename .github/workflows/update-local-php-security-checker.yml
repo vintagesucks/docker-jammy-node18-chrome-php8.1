@@ -20,7 +20,7 @@ jobs:
       - run: sed -i 's/local-php-security-checker v.*$/local-php-security-checker ${{steps.version.outputs.prop}}/g' README.md
       - run: rm version.json
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4.0.4
+        uses: peter-evans/create-pull-request@v4.1.0
         with:
             token: ${{ secrets.PAT }}
             commit-message: 'local-php-security-checker ${{steps.version.outputs.prop}}'
