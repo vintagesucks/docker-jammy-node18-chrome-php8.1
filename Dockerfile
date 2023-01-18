@@ -14,8 +14,7 @@ RUN apt-get -y install \
   gconf-service \
   libasound2 \
   libgtk-3-0 \
-  gconf-service \
-  libasound2 \
+  libu2f-udev \
   libgconf-2-4 \
   libnspr4 \
   libx11-dev \
