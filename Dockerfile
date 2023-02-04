@@ -7,7 +7,8 @@ RUN apt update && apt upgrade -y
 # install essential packages
 RUN apt install -y \
   curl \
-  software-properties-common
+  software-properties-common \
+  xvfb
 
 # add Node.js and PHP repos
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
