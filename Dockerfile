@@ -7,6 +7,7 @@ RUN apt update && apt upgrade -y
 # install essential packages
 RUN apt install -y \
   curl \
+  git \
   software-properties-common \
   xvfb
 
