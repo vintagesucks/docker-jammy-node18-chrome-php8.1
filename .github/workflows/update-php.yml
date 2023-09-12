@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.0.0
-      - run: wget -O version.json "https://www.php.net/releases/index.php?json&version=8.1"
+      - run: wget -O version.json "https://api.launchpad.net/devel/~ondrej/+archive/ubuntu/php?ws.op=getPublishedSources&exact_match=true&source_name=php8.1&status=Published&distro_series=https://api.launchpad.net/devel/ubuntu/jammy"
       - name: Get latest version
         id: version
         uses: notiz-dev/github-action-json-property@release
         with: 
             path: 'version.json'
-            prop_path: 'version'
-      - run: sed -i 's/PHP.*Composer/PHP ${{steps.version.outputs.prop}} + Composer/g' README.md
+            prop_path: 'entries.0.source_package_version'
+      - run: sed -i "s/PHP.*Composer/PHP $(echo "${{ steps.version.outputs.prop }}" | cut -d- -f1) + Composer/g" README.md
       - run: rm version.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5.0.2
@@ -28,4 +28,4 @@ jobs:
             branch: 'php-${{steps.version.outputs.prop}}'
             delete-branch: true
             title: 'PHP ${{steps.version.outputs.prop}}'
-            body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update-php.yml). Please check if ${{steps.version.outputs.prop}} is [available at the PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php/+packages?field.name_filter=php8.1&field.status_filter=published&field.series_filter=jammy) before merging.'
+            body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update-php.yml).'
