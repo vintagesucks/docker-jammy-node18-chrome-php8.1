@@ -4,3 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      actions-docker:
+        patterns:
+        - "docker/*"
+        - "peter-evans/dockerhub-description"
+      actions-patch:
+        patterns:
+        - "*"
+        update-types:
+        - "patch"
