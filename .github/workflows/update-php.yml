@@ -17,15 +17,17 @@ jobs:
         with: 
             path: 'version.json'
             prop_path: 'entries.0.source_package_version'
-      - run: sed -i "s/PHP.*Composer/PHP $(echo "${{ steps.version.outputs.prop }}" | cut -d- -f1) + Composer/g" README.md
+      - id: php
+        run: 'echo "version=$(echo "${{ steps.version.outputs.prop }}" | cut -d- -f1)" >> "$GITHUB_OUTPUT"'
+      - run: sed -i "s/PHP.*Composer/PHP ${{ steps.php.outputs.version }} + Composer/g" README.md
       - run: rm version.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5.0.2
         with:
             token: ${{ secrets.PAT }}
-            commit-message: 'PHP ${{steps.version.outputs.prop}}'
+            commit-message: 'PHP ${{steps.php.outputs.version}}'
             committer: 'Nikolas Evers <vintagesucks@users.noreply.github.com>'
-            branch: 'php-${{steps.version.outputs.prop}}'
+            branch: 'php-${{steps.php.outputs.version}}'
             delete-branch: true
-            title: 'PHP ${{steps.version.outputs.prop}}'
+            title: 'PHP ${{steps.php.outputs.version}}'
             body: 'This pull request was [created automatically](https://github.com/vintagesucks/docker-jammy-node18-chrome-php8.1/blob/main/.github/workflows/update-php.yml).'
