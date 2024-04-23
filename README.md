@@ -5,6 +5,6 @@
 Docker image
 * Ubuntu 22.04
 * Node.js v18 + NPM + Yarn
-* PHP 8.1.27 + Composer
+* PHP 8.1.28 + Composer
 * ImageMagick + Imagick PHP extension
 * Google Chrome
