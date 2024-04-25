@@ -9,7 +9,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.2
+      - uses: actions/checkout@v4.1.4
       - run: wget -O version.json "https://api.launchpad.net/devel/~ondrej/+archive/ubuntu/php?ws.op=getPublishedSources&exact_match=true&source_name=php8.1&status=Published&distro_series=https://api.launchpad.net/devel/ubuntu/jammy"
       - name: Get latest version
         id: version
@@ -22,7 +22,7 @@ jobs:
       - run: sed -i "s/PHP.*Composer/PHP ${{ steps.php.outputs.version }} + Composer/g" README.md
       - run: rm version.json
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6.0.2
+        uses: peter-evans/create-pull-request@v6.0.4
         with:
             token: ${{ secrets.PAT }}
             commit-message: 'PHP ${{steps.php.outputs.version}}'
