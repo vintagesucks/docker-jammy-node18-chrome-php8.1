@@ -9,7 +9,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
       - run: wget -O version.json "https://api.launchpad.net/devel/~ondrej/+archive/ubuntu/php?ws.op=getPublishedSources&exact_match=true&source_name=php8.1&status=Published&distro_series=https://api.launchpad.net/devel/ubuntu/jammy"
       - name: Get latest version
         id: version
